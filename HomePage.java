@@ -20,6 +20,13 @@ public class HomePage  {
         login.setBounds(200,175,100,40);
         register.setBounds(200,225,100,40);
         
+        login.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if(e.getButton() == MouseEvent.BUTTON1) {
+                    LoginUser login = new LoginUser();
+                }
+            }
+        });
         
         register.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {

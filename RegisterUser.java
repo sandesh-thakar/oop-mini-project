@@ -12,8 +12,6 @@ import org.json.simple.parser.ParseException;
 public class RegisterUser {
     @SuppressWarnings("unchecked")
     
-    
-    
     boolean check_username(String username)
     {
         String line;
@@ -100,8 +98,10 @@ public class RegisterUser {
                         }
                     }
                     
-                    else
-                        username.setText("Invalid username");
+                    else {
+                        username.setText("This username already exists");
+                        username.setForeground(Color.RED);
+                    }
                 }
                
             }
