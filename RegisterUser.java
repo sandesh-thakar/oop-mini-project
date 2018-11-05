@@ -2,12 +2,44 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.*;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class RegisterUser {
     @SuppressWarnings("unchecked")
+    
+    
+    
+    boolean check_username(String username)
+    {
+        String line;
+        
+        try {
+            BufferedReader bufferreader = new BufferedReader(new FileReader("users.json"));
+            
+            while((line=bufferreader.readLine())!=null) {
+                
+                int index=line.lastIndexOf(':');
+               
+                String un = line.substring(index+2,line.length()-2);
+                
+                if(un.equals(username))
+                    return false;
+                
+            }
+        } catch (FileNotFoundException exp) {
+            exp.printStackTrace();
+        } catch (IOException exp) {
+            exp.printStackTrace();
+        }
+        return true;
+    }
+    
+    
     
     RegisterUser()
     {
@@ -53,18 +85,23 @@ public class RegisterUser {
                     userDetails.put("address",address.getText());
                     userDetails.put("email",email.getText());
                     
+                    if(check_username(username.getText()))
+                    {
                     
-                    try(FileWriter file = new FileWriter("users.json",true)) {
-                        file.write(userDetails.toJSONString());
-                        file.write("\n");
-                        file.flush();
-                        
-                        register.setVisible(false);
-                        register.dispose();
-                    } catch (IOException exp) {
-                        exp.printStackTrace();
+                        try(FileWriter file = new FileWriter("users.json",true)) {
+                            file.write(userDetails.toJSONString());
+                            file.write("\n");
+                            file.flush();
+                            
+                            register.setVisible(false);
+                            register.dispose();
+                        } catch (IOException exp) {
+                            exp.printStackTrace();
+                        }
                     }
                     
+                    else
+                        username.setText("Invalid username");
                 }
                
             }

@@ -1,7 +1,9 @@
 #BlueJ class context
 comment0.target=RegisterUser
-comment1.params=
-comment1.target=RegisterUser()
-comment2.params=e
-comment2.target=void\ mouseClicked(java.awt.event.MouseEvent)
-numComments=3
+comment1.params=username
+comment1.target=boolean\ check_username(java.lang.String)
+comment2.params=
+comment2.target=RegisterUser()
+comment3.params=e
+comment3.target=void\ mouseClicked(java.awt.event.MouseEvent)
+numComments=4
